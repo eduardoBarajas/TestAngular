@@ -1,0 +1,88 @@
+<nav>
+  <div class="nav-wrapper" style="background-color: #673AB7">
+    <h1 href="#" class="ml-2" style="color: whitesmoke; font-weight: 600; font-size: 3rem;">Examen</h1>
+  </div>
+</nav>
+<div class="container-fluid" style="margin-top: 2rem;">
+  <!-- Page Content goes here -->
+  <div class="row">
+    <div class="col-md-3">
+      <mat-form-field class="w-100">
+        <mat-label>Nombre</mat-label>
+        <input matInput id="name" [(ngModel)]="formData.nombre" type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-1">
+      <mat-form-field class="w-100">
+        <mat-label>Edad</mat-label>
+        <input matInput [(ngModel)]="formData.edad" id="age" type="number">
+      </mat-form-field>
+    </div>
+    <div class="col-md-2">
+      <mat-form-field class="w-100">
+        <mat-label>Sexo</mat-label>
+        <mat-select [(ngModel)]="formData.sexo">
+          <mat-option *ngFor="let sexo of [0, 1]" [value]="sexo">
+            {{sexoMap.get(sexo)}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-1">
+      <mat-form-field class="w-100">
+        <mat-label>Peso</mat-label>
+        <input matInput [(ngModel)]="formData.peso" id="weight" type="number">
+      </mat-form-field>
+    </div>
+    <div class="col-md-1">
+      <mat-form-field class="w-100">
+        <mat-label>Altura</mat-label>
+        <input matInput [(ngModel)]="formData.altura" id="height" type="number">
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <button mat-raised-button color="primary" (click)="generarPersonas()">Generar Personas</button>
+    </div>
+  </div>
+  <div class="col-md-12 animated fast" [ngClass]="{'fadeIn': personasChanged, 'fadeOut': !personasChanged}" *ngIf="persona1 != null">
+
+    <div class="row">
+      <div class="col-md-4 my-2">
+        <mat-card class="mat-elevation-z8 px-0 py-0">
+          <mat-card-header class="card-header-color">
+            <mat-card-title>Persona 1</mat-card-title>
+            <mat-card-subtitle>Con todos los campos</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="px-4 py-4">
+            <p *ngFor="let campo of persona1.toString().split(',')">{{campo}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4 my-2">
+        <mat-card class="mat-elevation-z8 px-0 py-0">
+          <mat-card-header class="card-header-color">
+            <mat-card-title>Persona 2</mat-card-title>
+            <mat-card-subtitle>Con todos los campos excepto peso y altura</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="px-4 py-4">
+              <p *ngFor="let campo of persona2.toString().split(',')">{{campo}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-4 my-2">
+        <mat-card class="mat-elevation-z8 px-0 py-0">
+          <mat-card-header class="card-header-color">
+            <mat-card-title>Persona 3</mat-card-title>
+            <mat-card-subtitle>Con constructor por defecto</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="px-4 py-4">
+              <p *ngFor="let campo of persona3.toString().split(',')">{{campo}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
